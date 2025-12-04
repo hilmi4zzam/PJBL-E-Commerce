@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PJBL WEB E-COMMERCE</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrapper hero-grid">
+        <div class="brand-header">
+          <div id="logo-animation" class="logo-canvas" aria-hidden="true"></div>
+          <div>
+            <h1>BakulanHardware</h1>
+            <p class="subtitle">Mulai SetUp dan Beli Komponen Hardware Untuk Keperluan Kamu</p>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="cart-pill" onclick="toggleCart()">🛒 Keranjang <span id="cart-count">0</span></button>
+          <button class="cta" onclick="openCheckout()">Checkout Cepat</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrapper">
+      <section class="collection-card">
+        <div class="collection-header">
+          <div>
+            <h2>Daftar Belanja</h2>
+            <p>Pilih produk favoritmu, tambahkan ke keranjang, lalu lanjutkan transaksi.</p>
+          </div>
+        </div>
+        <div class="products-grid" id="products-grid"></div>
+      </section>
+    </main>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h2>Keranjang</h2>
+        <button class="close-btn" onclick="toggleCart()">✖</button>
+      </div>
+      <div class="cart-items" id="cart-items">
+        <p class="empty-cart">Keranjang kosong</p>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cart-total">Rp 0</span>
+        </div>
+        <button class="checkout-btn" onclick="openCheckout()">Checkout</button>
+      </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkout-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Checkout</h2>
+          <button class="close-btn" onclick="closeCheckout()">✖</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Order Summary -->
+          <div class="order-summary">
+            <h3>Ringkasan Pesanan</h3>
+            <div id="checkout-items"></div>
+            <div class="total-price">
+              <strong>Total Pembayaran:</strong>
+              <strong id="checkout-total">Rp 0</strong>
+            </div>
+          </div>
+
+          <!-- Payment Method Selection -->
+          <div class="payment-method">
+            <h3>Pilih Metode Pembayaran</h3>
+            <div class="payment-options">
+              <label class="payment-option">
+                <input type="radio" name="payment" value="cash" checked />
+                <div class="option-content">
+                  <img src="assets/tunaicash.jpg" alt="Logo Tunai" class="payment-logo" />
+                  <span>Cash (Tunai)</span>
+                </div>
+              </label>
+
+              <label class="payment-option">
+                <input type="radio" name="payment" value="dana" />
+                <div class="option-content">
+                  <img src="assets/logo_dana.png" alt="Logo DANA" class="payment-logo" />
+                  <span>DANA</span>
+                </div>
+              </label>
+
+              <label class="payment-option">
+                <input type="radio" name="payment" value="gopay" />
+                <div class="option-content">
+                  <img src="assets/logo_gopay.png" alt="Logo GoPay" class="payment-logo" />
+                  <span>GOPAY</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button class="confirm-btn" onclick="processPayment()">Konfirmasi Pembayaran</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Modal (for DANA/GOPAY) -->
+    <div class="modal" id="payment-modal">
+      <div class="modal-content payment-modal-content">
+        <div class="modal-header">
+          <h2 id="payment-title">Pembayaran</h2>
+          <button class="close-btn" onclick="closePaymentModal()">✖</button>
+        </div>
+
+        <div class="modal-body payment-body">
+          <div id="payment-info"></div>
+          <button class="success-btn" onclick="completePayment()">Selesai</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+      <div class="modal-content success-modal-content">
+        <div class="success-icon">✅</div>
+        <h2>Pembayaran Berhasil!</h2>
+        <p>Terima kasih telah berbelanja di toko kami.</p>
+        <div><button class="success-btn" onclick="closeSuccessModal()">Kembali Belanja</button></div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" integrity="sha512-hguS2fy4VB/xW7XfL2vCLWwFfhq8apX2HFOKRSleTFOvIAtvyArY1PsvEpTIMxQo8Sj5TR1+t0NenE2no0Rvrg==" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
